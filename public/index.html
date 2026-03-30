@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>REST API Product CRUD Tester</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    h2 { margin-top: 40px; }
+    form { margin-bottom: 20px; padding: 10px; border: 1px solid #ccc; }
+    label { display: block; margin: 5px 0 2px; }
+    input, button { margin: 5px 0; padding: 5px; }
+    pre { background: #f4f4f4; padding: 10px; overflow: auto; }
+  </style>
+</head>
+<body>
+  <h1>REST API Product CRUD Tester</h1>
+
+  <h2>Create Product</h2>
+  <form id="createProductForm">
+    <label>Store ID:</label><input type="text" id="createStoreId" required>
+    <label>Store Name:</label><input type="text" id="createStoreName" required>
+    <label>Product ID:</label><input type="text" id="createProductId" required>
+    <label>Product Name:</label><input type="text" id="createProductName" required>
+    <label>Price:</label><input type="number" id="createPrice" step="0.01" required>
+    <button type="submit">Create Product</button>
+  </form>
+
+  <h2>Get All Products</h2>
+  <button id="getAllProductsBtn">Fetch All Products</button>
+
+  <h2>Get Product</h2>
+  <form id="getProductForm">
+    <label>Product ID:</label><input type="text" id="getProductId" required>
+    <button type="submit">Fetch Product</button>
+  </form>
+
+  <h2>Update Product</h2>
+  <form id="updateProductForm">
+    <label>Product ID:</label><input type="text" id="updateProductId" required>
+    <label>New Store Name:</label><input type="text" id="updateStoreName">
+    <label>New Product Name:</label><input type="text" id="updateProductName">
+    <label>New Price:</label><input type="number" id="updatePrice" step="0.01">
+    <button type="submit">Update Product</button>
+  </form>
+
+  <h2>Delete Product</h2>
+  <form id="deleteProductForm">
+    <label>Product ID:</label><input type="text" id="deleteProductId" required>
+    <button type="submit">Delete Product</button>
+  </form>
+
+  <h2>Response</h2>
+  <pre id="jsonOutput">{}</pre>
+
+  <script>
+    const output = document.getElementById('jsonOutput');
+    const apiBase = 'http://localhost:3000';
+
+    function showJSON(data) {
+      output.textContent = JSON.stringify(data, null, 2);
+    }
+
+    async function handleFetch(url, options) {
+      try {
+        const res = await fetch(url, options);
+        const text = await res.text();
+        try {
+          const data = JSON.parse(text);
+          showJSON(data);
+        } catch {
+          showJSON({ status: res.status, data: text });
+        }
+      } catch (err) {
+        showJSON({ error: err.message });
+      }
+    }
+
+    // CREATE
+    document.getElementById('createProductForm').addEventListener('submit', e => {
+      e.preventDefault();
+
+      const product = {
+        storeId: document.getElementById('createStoreId').value,
+        storeName: document.getElementById('createStoreName').value,
+        productId: document.getElementById('createProductId').value,
+        productName: document.getElementById('createProductName').value,
+        price: Number(document.getElementById('createPrice').value)
+      };
+
+      handleFetch(`${apiBase}/products`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(product)
+      });
+    });
+
+    // READ ALL
+    document.getElementById('getAllProductsBtn').addEventListener('click', () => {
+      handleFetch(`${apiBase}/products`);
+    });
+
+    // READ ONE
+    document.getElementById('getProductForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const productId = document.getElementById('getProductId').value;
+      handleFetch(`${apiBase}/products/${productId}`);
+    });
+
+    // UPDATE
+    document.getElementById('updateProductForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const productId = document.getElementById('updateProductId').value;
+
+      const updatedFields = {};
+      const storeName = document.getElementById('updateStoreName').value;
+      const productName = document.getElementById('updateProductName').value;
+      const price = document.getElementById('updatePrice').value;
+
+      if (storeName) updatedFields.storeName = storeName;
+      if (productName) updatedFields.productName = productName;
+      if (price) updatedFields.price = Number(price);
+
+      handleFetch(`${apiBase}/products/${productId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatedFields)
+      });
+    });
+
+    // DELETE
+    document.getElementById('deleteProductForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const productId = document.getElementById('deleteProductId').value;
+      handleFetch(`${apiBase}/products/${productId}`, { method: 'DELETE' });
+    });
+  </script>
+</body>
+</html>
