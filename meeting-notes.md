@@ -1,9 +1,9 @@
 Iteration 1 - Standup 1
-Date:
-Time:
-Attendees:
+Date:March 30, 2026
+Time:8:25AM
+Attendees: Ferreira, Tiago Philippe;Barry, Mariama;Cheng, Julong
 
-Planned tasks:
+Planned tasks: discussed group project by Email and made a meeting time. 
 - Set up Node project
 - Connect MongoDB Atlas
 - Create Product schema

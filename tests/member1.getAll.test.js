@@ -1,5 +1,5 @@
 module.exports = async function runMember1GetAllTest() {
-    const url = "https://member1-backend-url-here/products"; // replace with teammate 1 GetAll endpoint
+    const url =  
 
     try {
         const response = await fetch(url);

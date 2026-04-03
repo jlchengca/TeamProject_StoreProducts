@@ -1,5 +1,5 @@
 module.exports = async function runMember2GetAllTest() {
-    const url = "https://member2-backend-url-here/products"; // replace with teammate 2 GetAll endpoint
+    const url = "https://cst8326-teamproject-api-mariama.onrender.com/products/getAll"; 
 
     try {
         const response = await fetch(url);
