@@ -1,4 +1,4 @@
-Iteration 1 - Standup 1
+Iteration 0 - Standup 
 Date:March 30, 2026
 Time:8:25AM
 Attendees: Ferreira, Tiago Philippe;Barry, Mariama;Cheng, Julong
@@ -15,9 +15,9 @@ Blockers:
 - None yet / Atlas connection string / deployment question
 
 Next standup:
-- 1 hour later
 
-Iteration 1 - Standup 2
+
+Iteration 1 - Individual Implementation 
 Done:
 - Built full-stack product CRUD app
 - Connected MongoDB Atlas
@@ -35,3 +35,23 @@ Blockers:
 
 Reflection:
 The hardest part of this iteration was Atlas connection setup. Once the standard connection string and correct database user password were used, the application worked correctly. The duplicate key error also confirmed that productId uniqueness was being enforced correctly.
+
+Next standup:
+
+Iteration 2 - Integration & Testing 
+Date:April? , 2026
+Time: ?PM
+Attendees: Ferreira, Tiago Philippe;Barry, Mariama;Cheng, Julong
+
+Integration and testing were completed by using separate test files:
+Self.getAll.test.js
+Member1.getAll.test.js
+Member2.getAll.test.js
+
+Reflection:
+Each test verified that the endpoint was reachable, returned HTTP 200, and provided a valid JSON array. All tests were executed through automate.js to confirm that the integrated APIs responded correctly.
+
+-hours of later
+
+Iteration 3 - Demoing
+each team member demos their solution. 

@@ -1,5 +1,3 @@
-const EMAIL = "chen0880@algonquinlive.com";
-
 const selfTest = require("./tests/self.getAll.test");
 const member1Test = require("./tests/member1.getAll.test");
 const member2Test = require("./tests/member2.getAll.test");
@@ -12,7 +10,7 @@ async function runTestsSequentially() {
         try {
             const result = await runTest();
 
-            console.log(`Email: ${EMAIL}`);
+            console.log(`Email: ${result.email}`);
             console.log(`Test: ${result.name}`);
             console.log(`Result: ${result.passed ? "PASS" : "FAIL"}`);
 
@@ -35,7 +33,7 @@ async function runTestsSequentially() {
             }
         } catch (error) {
             failed = true;
-            console.log(`Email: ${EMAIL}`);
+            console.log(`Email: Unknown`);
             console.log(`Test: Unknown Test`);
             console.log(`Result: FAIL`);
             console.log(`Details: ${error.message}`);

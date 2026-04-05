@@ -14,6 +14,7 @@ module.exports = async function runMember2GetAllTest() {
         const passed = response.ok && Array.isArray(data);
 
         return {
+            email: "hadj0010@algonquinlive.com",
             name: "Member 2 GetAll Test",
             passed,
             url,
@@ -24,6 +25,7 @@ module.exports = async function runMember2GetAllTest() {
         };
     } catch (error) {
         return {
+            email: "hadj0010@algonquinlive.com",
             name: "Member 2 GetAll Test",
             passed: false,
             url,
