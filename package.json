@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-     "start": "node server/server.js",
-     "dev": "nodemon server/server.js",
-     "test": "jest --runInBand"
+    "start": "node server/server.js",
+    "dev": "nodemon server/server.js",
+    "test": "jest --runInBand"
   },
   "keywords": [],
   "author": "",
@@ -18,7 +18,8 @@
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
     "mongodb": "^7.1.1",
-    "mongoose": "^9.3.3"
+    "mongoose": "^9.3.3",
+    "node-fetch": "^3.3.2"
   },
   "devDependencies": {
     "jest": "^30.3.0",

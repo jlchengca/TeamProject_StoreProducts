@@ -39,8 +39,8 @@ The hardest part of this iteration was Atlas connection setup. Once the standard
 Next standup:
 
 Iteration 2 - Integration & Testing 
-Date:April? , 2026
-Time: ?PM
+Date:April 8, 2026
+Time: 7PM
 Attendees: Ferreira, Tiago Philippe;Barry, Mariama;Cheng, Julong
 
 Integration and testing were completed by using separate test files:
@@ -55,3 +55,6 @@ Each test verified that the endpoint was reachable, returned HTTP 200, and provi
 
 Iteration 3 - Demoing
 each team member demos their solution. 
+
+Reflection:
+All tasks finished. 

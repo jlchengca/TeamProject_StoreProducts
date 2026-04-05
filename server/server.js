@@ -1,5 +1,7 @@
 const express = require('express');
 const cors = require('cors');
+const fetch = (...args) =>
+  import('node-fetch').then(({ default: fetch }) => fetch(...args));
 require('dotenv').config();
 
 const connectDB = require('../models/db');
@@ -25,10 +27,53 @@ app.post('/products', async (req, res) => {
 
 app.get('/products', async (req, res) => {
   try {
-    const products = await Product.find();
-    res.status(200).json(products);
+    const myProductsRaw = await Product.find();
+
+    const member1Url = 'https://team-project-e-commerce--tiagophilippefe.replit.app/store/69becb00e3e49ae440f51722/';
+    const member2Url = 'https://cst8326-teamproject-api-mariama.onrender.com/products/getAll';
+
+    const member1Response = await fetch(member1Url);
+    const member1Data = await member1Response.json();
+
+    const member2Response = await fetch(member2Url);
+    const member2Data = await member2Response.json();
+
+    const member1ProductsRaw = Array.isArray(member1Data)
+      ? member1Data
+      : member1Data.products || [];
+
+    const member2ProductsRaw = Array.isArray(member2Data)
+      ? member2Data
+      : [];
+
+    const myProducts = myProductsRaw.map(product => ({
+      source: 'self',
+      ...product._doc
+    }));
+
+    const member1Products = member1ProductsRaw.map(product => ({
+      source: 'member1',
+      storeName: member1Data.storeName || 'Member1 Store',
+      ...product
+    }));
+
+    const member2Products = member2ProductsRaw.map(product => ({
+      source: 'member2',
+      ...product
+    }));
+
+    const allProducts = [
+      ...myProducts,
+      ...member1Products,
+      ...member2Products
+    ];
+
+    res.status(200).json(allProducts);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      error: 'Failed to integrate team member modules',
+      details: err.message
+    });
   }
 });
 
