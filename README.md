@@ -1,21 +1,22 @@
-# TeamProject_StoreProducts
+TeamProject_StoreProducts
 
 Full Stack Application Project
 
-## Features
+API Main Menu
+- Create products
 - View products
 - Add products
 - Update products
 - Delete products
 
-## Technologies
+Softwares and platforms used
 - Node.js
 - Express
 - MongoDB Atlas
 - HTML/CSS/JavaScript
 - Replit platform
 
-## How to Run
+The links and Running
 1. npm install
 2. start server
 3. open http://localhost:3000
